@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
-gem 'sqlite3'
+
 gem "twitter", "~> 2.1.0"
+
 
 
 group :assets do
