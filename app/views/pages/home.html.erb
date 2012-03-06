@@ -1,0 +1,36 @@
+<div class="hero-unit">
+  <%= link_to '<h2>Tweet-stalker</h2>'.html_safe, '/' %>
+  <p>some really cool thing I'm making to get into inbed.me team...</p>
+  <%= Time.now %> -> to check that the whole page isn't reloading
+</div>
+
+<div class="row">
+  <div class="span4">
+    <%= form_tag '/', :remote => true do %>
+      <%= label_tag :user1 %>
+      <%= text_field_tag :user1, @user1, :title => "don't use @" %>
+  </div>
+  
+  <div class="span4">
+      <%= label_tag :user2 %>
+      <%= text_field_tag :user2, @user2, :title => "don't use @" %>
+  </div>
+  
+  <div class="span4">
+      <%= label_tag :user3 %>
+      <%= text_field_tag :user3, @user3, :title => "don't use @" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span2 offset5">
+    <div class="form-actions">
+      <%= submit_tag 'show tweets!', :class => 'btn btn-primary centered' %>
+    </div>
+  </div>
+</div>
+<% end -%>
+
+<div class="row" id="tweets">
+  <%= render 'tweets' %>
+</div>
