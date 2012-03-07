@@ -1,13 +1,18 @@
 <div class="well">
   <h3>Here is a mix of <%= [@user1, @user2, @user3].join(', ') %> tweets!</h3>
   
-  <% [params[:user1], params[:user2], params[:user3]].each do |user| -%>
-    <% if not Twitter.user?(user) and params[:user1] -%>
-      <div class="alert alert-error">
-        @<%= user %> is not a twitter user!
-      </div>
+  <% if params[:user1] or params[:user2] or params[:user3] -%>
+    <% [params[:user1], params[:user2], params[:user3]].each do |user| -%>
+      <% if not Twitter.user?(user) -%>
+        <div class="alert alert-error">
+          @<%= user %> is not a twitter user!
+        </div>
+      <% end -%>
     <% end -%>
   <% end -%>
+
+  
+  
   
   Displaying <%= @tweets.size %> tweets
   
