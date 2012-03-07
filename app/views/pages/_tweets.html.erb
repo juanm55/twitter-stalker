@@ -12,7 +12,7 @@
   Displaying <%= @tweets.size %> tweets
   
   <% @tweets.each do |tweet| -%>
-    <span title="<%= tweet.user.description %>"><h4><%= link_to '@' + tweet.user.screen_name, 'https://twitter.com/#!/' + tweet.user.screen_name %> <%= time_ago_in_words(tweet.created_at) %></h4>
+    <span title="<%= tweet.user.description %>"><h4><%= link_to '@' + tweet.user.screen_name, 'https://twitter.com/#!/' + tweet.user.screen_name %> <%= tweet.created_at %></h4>
     <p><%= tweet.text %></p></span>
   <% end -%>
 </div>
