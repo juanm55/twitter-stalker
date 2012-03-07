@@ -1,56 +1,18 @@
-<div class="span4">
-    <div class="well">
-      <% if Twitter.user?(@user1) -%>
-        <h3>Tweets by @<%= @user1 %></h3>
-        
-        <% Twitter.user_timeline(@user1, :count => 2).each do |tweet| %>
-          <ul>
-            <li><%= tweet.created_at %><br/>
-            <%= tweet.text %></li>
-          </ul>
-        <% end -%>
-        
-      <% else -%>
-        <h4>This twitter user does not exist!</h4>
-        <%= @user1 %>
-      <% end -%>
-    </div>
-     
-  </div>
+<div class="well">
+  <h3>Here is a mix of <%= [@user1, @user2, @user3].join(', ') %> tweets!</h3>
   
-  <div class="span4">
-    <div class="well">
-      <% if Twitter.user?(@user2) -%>
-        <h3>Tweets by @<%= @user2 %></h3>
-        <% Twitter.user_timeline(@user2, :count => 2).each do |tweet| %>
-          <ul>
-            <li><%= tweet.created_at %><br/>
-            <%= tweet.text %></li>
-          </ul>
-        <% end -%>
-      <% else -%>
-        <h4>This twitter user does not exist!</h4>
-        <%= @user2 %>
-      <% end -%>
-    </div>
-  </div>
+  <% [params[:user1], params[:user2], params[:user3]].each do |user| -%>
+    <% if not Twitter.user?(user) and params[:user1] -%>
+      <div class="alert alert-error">
+        @<%= user %> is not a twitter user!
+      </div>
+    <% end -%>
+  <% end -%>
   
+  Displaying <%= @tweets.size %> tweets
   
-  <div class="span4">
-    <div class="well">
-      <% if Twitter.user?(@user3) -%>
-        <h3>Tweets by @<%= @user3 %></h3>
-        <% Twitter.user_timeline(@user3, :count => 2).each do |tweet| %>
-          <ul>
-            <li><%= tweet.created_at %><br/>
-            <%= tweet.text %></li>
-          </ul>
-        <% end -%>
-      <% else -%>
-        <h4>This twitter user does not exist!</h4>
-        <%= @user3 %>
-      <% end -%>
-    </div>
-  </div>
-  
-  
+  <% @tweets.each do |tweet| -%>
+    <span title="<%= tweet.user.description %>"><h4><%= link_to '@' + tweet.user.screen_name, 'https://twitter.com/#!/' + tweet.user.screen_name %> <%= time_ago_in_words(tweet.created_at) %></h4>
+    <p><%= tweet.text %></p></span>
+  <% end -%>
+</div>

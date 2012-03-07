@@ -9,28 +9,18 @@
     <%= form_tag '/', :remote => true do %>
       <%= label_tag :user1 %>
       <%= text_field_tag :user1, @user1, :title => "don't use @" %>
-  </div>
-  
-  <div class="span4">
       <%= label_tag :user2 %>
       <%= text_field_tag :user2, @user2, :title => "don't use @" %>
-  </div>
-  
-  <div class="span4">
       <%= label_tag :user3 %>
       <%= text_field_tag :user3, @user3, :title => "don't use @" %>
+      
+      <div class="form-actions">
+        <%= submit_tag 'show tweets!', :class => 'btn btn-primary centered' %>
+      </div>
+    <% end -%>
   </div>
-</div>
-
-<div class="row">
-  <div class="span2 offset5">
-    <div class="form-actions">
-      <%= submit_tag 'show tweets!', :class => 'btn btn-primary centered' %>
-    </div>
+  
+  <div class="span8" id="tweets">
+    <%= render 'tweets' %>
   </div>
-</div>
-<% end -%>
-
-<div class="row" id="tweets">
-  <%= render 'tweets' %>
 </div>
